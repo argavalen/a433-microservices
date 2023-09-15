@@ -2,16 +2,16 @@ version: "3.7"
 
 services:
   item-app:  
-    image: ghcr.io/argavalen/item-app:v1  
+    image: ghcr.io/argavalen/item-app:v1  #menggunakan image yang sudah diupload ke registry
     ports:        
-      - "80:8080"  
+      - "80:8080"  #port mapping agar bisa diakses di port 80 pada host
     depends_on: 
-      - item-db  
+      - item-db  #untuk memastikan item-app berjalan setelah item-db
 
   item-db:
     image: mongo:3 
     volumes:       
-      - app-db:/data/db 
+      - app-db:/data/db #menggunakan volume dengan nama app-db dengan target /data/db di container
 
 volumes:
-  app-db:
+  app-db: #membuat satu volume dengan nama app-db
